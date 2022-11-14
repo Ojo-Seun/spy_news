@@ -51,8 +51,8 @@ function Layout({ title,Data,index1,index2, children }: layoutType) {
       const hour = H < 10 ? `0${H}` : `${H}`
       const minutes = M < 10 ? `0${M}` : `${M}`
       const seconds = S < 10 ? `0${S}` : `${S}`
-
-        const period = H > 12 ? 'PM' : 'AM'
+        const hoursToMins = (H * 60) + M
+        const period = hoursToMins > 720 ? 'PM' : 'AM'
 
         setTime({h:hour,m:minutes,s:seconds,period: period})
       

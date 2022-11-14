@@ -17,7 +17,6 @@ const Home: NextPage = ({ localData }: any) => {
       if (response.length > 0) {
         setData(response)
       }
-      return
 
     }
     
