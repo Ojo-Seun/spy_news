@@ -118,22 +118,13 @@ function Layout({ title,Data,index1,index2, children }: layoutType) {
             </div>
             <div className="main-news">{children}</div>
         </div>
-        <div className="left-bar">Left bar</div>
+        <div className="left-bar"></div>
         
     </div>
       </main>
 
       <footer className='footer'>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className='logo'>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+          <span>SpyNews</span>
       </footer>
     </div>
   )

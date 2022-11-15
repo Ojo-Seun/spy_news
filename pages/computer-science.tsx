@@ -1,27 +1,10 @@
 import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import RenderPage from '../components/RenderPage'
-import LandingPageData from '../models/landingPageDataSchema'
-import db from '../utils/db'
-import fetchData from '../utils/fetchData'
 
-function IT({ localData }:any) {
-  let LocalData = JSON.parse(localData)
-  const [Data, setData] = useState(LocalData)
-  const router = useRouter()
+function IT({Data}:any) {
 
-  useEffect(() => {
-    
-    
-    fetchData(router.pathname.replace('/', '')).then(result => {
-      if (result.length > 0) {
-        setData(result)
-      }
-      return
-    })
-
-  },[router])
+ 
   return (
     <RenderPage Data ={Data} title='Information Technology'/>
      
@@ -30,15 +13,24 @@ function IT({ localData }:any) {
 
 export default IT
 
-
-export const getServerSideProps: GetServerSideProps = async ()=>{
-  await db.connect()
-  const localData = await LandingPageData.find({})
-  db.disconnect()
-
-  return {
-    props: {
-      localData: localData ? JSON.stringify(localData):[]
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const access_key = process.env.ACCESS_KEY
+  const path = context.resolvedUrl.replace('/','')
+  try {
+    
+    const res = await fetch(`https://newsapi.org/v2/everything?q=${path}&apiKey=${access_key}`)
+    const Data = await res.json()
+  
+    
+   
+    return {
+      props: {
+        Data: Data?Data.articles:[]
+      }
+    }
+  } catch {
+    return {
+      notFound:true
     }
   }
 }

@@ -3,4 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
+module.exports = {
+  images: {
+    domains:['assets.ichef.bbci.co.uk/news']
+  },
+}
+
+
 module.exports = nextConfig

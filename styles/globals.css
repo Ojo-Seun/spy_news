@@ -456,12 +456,7 @@ background-color: whitesmoke;
           flex: 2;
         }
 
-        .left-bar{
-          display:block;
-          width: 20vw;
-          background-color: azure;
-        }
-
+        
         .upperCards{
           width: 100%;
           display: flex;

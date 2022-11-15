@@ -1,13 +1,17 @@
 import { GetServerSideProps } from 'next'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Layout from './Layout'
 
 function RenderPage({ Data, title }: any) {
   const [imageIndex, setImageIndex] = useState({ index1: 0, index2: 0 })
 
+
+
+  
   let length = Data.length - 1
-
-
+  
 
   const getPublishedDate = (formalDateAndTime:string) => {
     let formal = formalDateAndTime.split('T')[0]
@@ -48,7 +52,6 @@ function RenderPage({ Data, title }: any) {
   }
 
   useEffect(() => {
-
     setInterval(() => {
       const index1 = Math.floor(Math.random() * length)
       const index2 = Math.floor(Math.random() * length)
@@ -61,14 +64,14 @@ function RenderPage({ Data, title }: any) {
     <Layout title={title} Data={Data} index1={imageIndex.index1} index2={imageIndex.index2}>
       <div className='cards-container'>
         <div className='upperCards'>
-          <div className='upperCard1'><img src={Data[imageIndex.index1]?.urlToImage} alt={Data[imageIndex.index1]?.title} /></div>
-          <div className='upperCard2'><img src={Data[imageIndex.index2]?.urlToImage} alt={Data[imageIndex.index2]?.title} /></div>
+          <div className='upperCard1'><img   width={500} height={300} src={Data[imageIndex.index1]?.urlToImage} alt={Data[imageIndex.index1]?.title} /></div>
+          <div className='upperCard2'><img  width={500} height={300} src={Data[imageIndex.index2]?.urlToImage} alt={Data[imageIndex.index2]?.title} /></div>
         </div>
         <div className='cards'>
         {
          Data.map((data:any, index:number) => (
             <div key={index} className='card'>
-             <img src={data.urlToImage} alt={data.title} />
+             <img width={300} height={200} src={data.urlToImage} alt={data.title} />
              <div className='content-container'>
                <span className='title'>{data.title}</span>
                <p className='description'>{data.description}</p>
